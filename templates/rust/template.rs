@@ -1,3 +1,5 @@
+// Advent of Code - Day 1 Solution
+// Link: https://adventofcode.com/2023/day/1
 fn main() {
     let input = include_str!("./input.txt");
     let output = part_1(input);
