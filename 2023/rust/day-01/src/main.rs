@@ -1,10 +1,11 @@
 // Advent of Code - Day 1 Solution
 // Link: https://adventofcode.com/2023/day/1
 fn main() {
-    let input = include_str!("./input/input1.txt");
-    let output = part_1(input);
+    let input = include_str!("./input/input.txt");
 
-    println!("Answer: {}", output);
+    let part_1_answer = part_1(input);
+
+    println!("Answer for part 1: {}", part_1_answer);
 }
 
 fn part_1(input: &str) -> u32 {
@@ -42,7 +43,7 @@ fn extract_number_value(line: &str) -> u32 {
             let front_value = front.unwrap();
 
             if front_value.is_numeric() && first_digit.is_none() {
-                first_digit = front
+                first_digit = Some(front_value.to_digit(10).unwrap() * 10);
             }
         }
 
@@ -50,25 +51,17 @@ fn extract_number_value(line: &str) -> u32 {
             let back_value = back.unwrap();
 
             if back_value.is_numeric() && second_digit.is_none() {
-                second_digit = back
+                second_digit = Some(back_value.to_digit(10).unwrap());
             }
         }
     }
 
-    let value = match (first_digit, second_digit) {
-        (Some(f), Some(s)) => {
-            format!("{}{}", f, s)
-        }
-        (Some(f), None) => {
-            format!("{}{}", f, f)
-        }
-        (None, Some(s)) => {
-            format!("{}{}", s, s)
-        }
-        _ => "0".to_owned(),
-    };
-
-    value.parse().unwrap()
+    match (first_digit, second_digit) {
+        (Some(f), Some(s)) => f + s,
+        (Some(f), None) => f + (f / 10),
+        (None, Some(s)) => (s * 10) + s,
+        _ => 0,
+    }
 }
 
 #[cfg(test)]
@@ -77,7 +70,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = part_1(
+        let part_1_result = part_1(
             "
             1abc2
             pqr3stu8vwx
@@ -85,6 +78,7 @@ mod tests {
             treb7uchet
             ",
         );
-        assert_eq!(result, 142);
+
+        assert_eq!(part_1_result, 142);
     }
 }
