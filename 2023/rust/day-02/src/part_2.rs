@@ -1,9 +1,9 @@
 pub fn execute(input: &str) -> u32 {
     let lines = input.split("\n");
-    lines.map(|line| check_game_possibility(line)).sum()
+    lines.map(|line| calculate_game_power(line)).sum()
 }
 
-fn check_game_possibility(line: &str) -> u32 {
+fn calculate_game_power(line: &str) -> u32 {
     let mut l_it = line.split(":");
 
     let game_number = l_it
