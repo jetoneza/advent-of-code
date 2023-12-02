@@ -98,7 +98,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let part_1_result = execute(
+        let result = execute(
             "
             two1nine
             eightwothree
@@ -110,6 +110,6 @@ mod tests {
             ",
         );
 
-        assert_eq!(part_1_result, 281);
+        assert_eq!(result, 281);
     }
 }

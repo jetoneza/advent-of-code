@@ -60,7 +60,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let part_1_result = execute(
+        let result = execute(
             "
             1abc2
             pqr3stu8vwx
@@ -69,6 +69,6 @@ mod tests {
             ",
         );
 
-        assert_eq!(part_1_result, 142);
+        assert_eq!(result, 142);
     }
 }
