@@ -1,7 +1,7 @@
 use day_03::{part_1, part_2};
 
-// Advent of Code - Day 2 Solution
-// Link: https://adventofcode.com/2023/day/2
+// Advent of Code - Day 3 Solution
+// Link: https://adventofcode.com/2023/day/3
 fn main() {
     let input = include_str!("./input.txt");
 
