@@ -17,7 +17,6 @@ pub fn execute(input: &str) -> i32 {
             for num in next_nums.iter().rev() {
                 if curr.is_none() {
                     curr = Some(num);
-                    diffs.push(*num);
                     continue;
                 }
 
@@ -27,17 +26,17 @@ pub fn execute(input: &str) -> i32 {
                 curr = Some(num);
             }
 
-            if let Some(last) = diffs.last() {
-                if *last == 0 {
-                    break;
-                }
+            diffs.push(*curr.unwrap());
+
+            if next_diff.iter().sum::<i32>() == 0 {
+                break;
             }
 
             next_diff.reverse();
             next_nums = next_diff;
         }
 
-        sum += diffs.iter().sum::<i32>();
+        sum += diffs.iter().rev().fold(0, |acc, c| c - acc)
     }
 
     sum
@@ -55,6 +54,6 @@ mod tests {
             10 13 16 21 30 45",
         );
 
-        assert_eq!(result, 114);
+        assert_eq!(result, 2);
     }
 }
